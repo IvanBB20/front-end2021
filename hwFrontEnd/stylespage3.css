@@ -1,0 +1,233 @@
+* {
+    font-family:  Helvetica, sans-serif;
+}
+#screen{
+    font-size: 16px;
+    background: linear-gradient(-100deg, #A2F2F1 0%, #B19AFE 100%);
+    height:100vh;
+    width: 100vw;
+    margin-top:auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+h1{
+    margin-bottom: 2px;
+}
+#container{
+    font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: whitesmoke;
+}
+#search{
+    margin-top: 35px;
+    height: 20px;
+    width: 160px;
+}
+h2{
+    margin-left: 20%;
+    font-size: 25px;
+}
+
+#search{
+    border: none;
+    border-radius: 5px;
+    background-color: #d0d3df;
+}
+
+#info-block{
+    margin-left: 200px;
+    max-width: 18rem;
+    margin-top: 0px;
+    background-color: white;
+    height: 205px ;
+    margin-top: 20px;
+
+}
+#numbers{
+    word-spacing: 30px;
+}
+
+#profilepic{
+    height: 70px;
+    width: 70px;
+    border-radius: 71px;
+    margin-left: 40%;
+
+}
+
+#info-reacts{
+    background-color: #F6F7FD;
+    color: #848694;
+}
+#buttonDiv{
+    display: flex;
+    justify-content: flex-end;
+    background-color: #F6F7FD;
+
+}
+
+#buttonLogOut{
+    border-radius: 10px;
+    border:2px solid turquoise;
+    border-style:double;
+    background-color: #F6F7FD;
+    color: paleturquoise;
+    height: 1%;
+}
+
+#buttonDummy{
+    visibility: hidden;
+}
+#ActualButton{
+    background-color: transparent;
+    border-color: #2fd4f1;
+    color:  #2fd4f1;
+    border-radius: 20px;
+    height: 30px;
+    margin-left: 30px;
+}
+
+#wall{
+    height: 430px;
+    width: 500px;
+    max-width: 55rem;
+    margin-left: 1%;
+    margin-top: 20px;
+    background-color: white;
+}
+
+#topBar{
+    width: 500px;
+       height: 50px;
+   background-color: #eef7f8;
+   display: flex;
+}
+
+#topBarPic{
+    height: 40px;
+    width: 40px;
+    margin-top: 5px;
+    border-radius: 30px;
+    margin-left: 40px;
+}
+
+#post-wall{
+    width: 380px;
+    height: 25px;
+    color: turquoise;
+    background-color: white;
+    border-radius: 20px;
+    outline: none;
+    border: lightgray;
+    margin-top: 15px;
+    margin-left: 9px;
+}
+#post-wall::placeholder{
+    color:turquoise;
+
+}
+
+#first-post{
+    height: 205px;
+}
+
+#first-post-pic{
+    border-radius: 30px;
+    height: 45px;
+    width: 45px;
+    margin-left: 8%;
+    margin-top: 7%;
+}
+
+#picture-username{
+    display: flex;
+}
+
+#username{
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    font-weight: bolder;
+    
+}
+#time{
+    margin-left: 10px ;
+    font-size: 15px;
+    font-weight: lighter;
+    font-style: oblique;
+    color: lightgray;
+}
+
+#post-publish{
+    margin-left: 98px;
+    margin-bottom: 20px;
+}
+
+#like-dislike{
+    margin-left: 90px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 120px;
+}
+
+#second-post{
+    height: 100px;
+    border-top: lightgray;
+    border-top-style: solid ;
+    border-top-width: 2px;
+}
+
+#second-post-pic{
+    border-radius: 30px;
+    height: 45px;
+    width: 45px;
+    margin-left: 8%;
+    margin-top: 5%;
+}
+
+#second-post-pic-username{
+    display: flex;
+   flex-direction: row;
+  align-items: center;
+
+}
+
+#time-second-post{
+    margin-left: 120px;
+}
+#name-main-profile{
+    margin-left: 20px;
+
+  
+}
+
+#time-main-post{
+    font-size: 15px;
+    margin-left: 10px;
+    margin-top: 1px;
+    font-weight: lighter;
+    font-style: oblique;
+    color: lightgray;
+}
+
+#name-main-profile{
+    display: flex;
+    flex-direction: row;
+    font-weight: bolder;
+}
+
+#second-post-article{
+    margin-left: 100px;
+}
+#like-dislike-second-post{
+    margin-left: 90px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 120px;
+}
