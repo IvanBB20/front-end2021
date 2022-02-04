@@ -13,8 +13,8 @@
         border-radius: 20px;
         text-indent: 10px;
       }
-      .buttons{
-          width: 200px;
+      .buttons {
+        width: 200px;
       }
       button {
         background-color: lightblue;
@@ -22,12 +22,12 @@
         margin-top: 11px;
         border-radius: 10px;
       }
-      #src{
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-direction: column;
-          background-color: moccasin;
+      #src {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: moccasin;
       }
     </style>
   </head>
@@ -75,16 +75,16 @@
 
   <script>
     function load_posts() {
-     //   localStorage.clear();
-      clicked = false;
+      //   localStorage.clear();
+      clicked_comment_button = false;
       if (localStorage.getItem("const")) {
         document.getElementById("post").innerHTML +=
           localStorage.getItem("const");
       }
     }
     function post_blog() {
-      if (clicked) {
-        clicked = false;
+      if (clicked_comment_button) {
+        clicked_comment_button = false;
         title = document.getElementById("tlt").value;
         article = document.getElementById("art").value;
 
@@ -121,13 +121,15 @@
     }
 
     function make_blog() {
-      clicked = true;
-      document.getElementById(
-        "post"
-      ).innerHTML += `<input id="tlt" type="text" placeholder="Enter title of blog"> <br id="rmtag"> `;
-      document.getElementById(
-        "post"
-      ).innerHTML += `<textarea id="art" rows=5 cols=33> </textarea> `;
+      if (clicked_comment_button == false) {
+        clicked_comment_button = true;
+        document.getElementById(
+          "post"
+        ).innerHTML += `<input id="tlt" type="text" placeholder="Enter title of blog"> <br id="rmtag"> `;
+        document.getElementById(
+          "post"
+        ).innerHTML += `<textarea id="art" rows=5 cols=33> </textarea> `;
+      }
     }
   </script>
 </html>

@@ -15,16 +15,14 @@
         background-color: lightcoral;
         display: flex;
         justify-content: center;
-        
       }
 
-      div{
-          overflow-wrap: break-word;
-
+      div {
+        overflow-wrap: break-word;
       }
-      #buttons_block{
-          display: flex;
-          justify-content:space-evenly;
+      #buttons_block {
+        display: flex;
+        justify-content: space-evenly;
       }
       #block {
         margin-left: 120px;
@@ -56,7 +54,6 @@
         <button onclick="comment()">Comment!</button>
         <button onclick="post_comment()">Post Comment</button>
         <button onclick="go_back()">Go back</button>
-       
       </div>
     </div>
   </body>
@@ -83,7 +80,7 @@
     }
 
     function load_comment() {
-      clicked = false;
+      clicked_comment_button = false;
       for (var i = 0; i < localStorage.length; i++) {
         if (localStorage.key(i).endsWith(" comment")) {
           var m_post_name = localStorage
@@ -99,8 +96,8 @@
       return;
     }
     function post_comment() {
-      if (clicked) {
-        clicked = false;
+      if (clicked_comment_button) {
+        clicked_comment_button = false;
         document.getElementById(
           "comments"
         ).innerHTML += `Post by: ${user} on date:${date} : ${
@@ -115,21 +112,21 @@
       }
     }
     function comment() {
-      user = return_current_user();
-      clicked = true;
-      today = new Date();
-      date =
-        today.getDate() +
-        "/" +
-        (today.getMonth() + 1) +
-        "/" +
-        today.getFullYear();
+      if (!clicked_comment_button) {
+        user = return_current_user();
+        clicked_comment_button = true;
+        today = new Date();
+        date =
+          today.getDate() +
+          "/" +
+          (today.getMonth() + 1) +
+          "/" +
+          today.getFullYear();
 
-      document.getElementById(
-        "comments"
-      ).innerHTML += `<br><textarea id="comment-box" rows=5 cols=33> </textarea> <br>`;
-      // comment=document.getElementById("comment-box").value;
-      //  console.log(comment);
+        document.getElementById(
+          "comments"
+        ).innerHTML += `<br><textarea id="comment-box" rows=5 cols=33> </textarea> <br>`;
+      }
     }
 
     function post() {
