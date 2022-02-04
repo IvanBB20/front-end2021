@@ -8,11 +8,30 @@
     <style>
       #art {
         background-color: lightcoral;
+        display: flex;
+        justify-content: center;
       }
       #post {
         background-color: lightcoral;
+        display: flex;
+        justify-content: center;
+        
       }
 
+      div{
+          overflow-wrap: break-word;
+
+      }
+      #buttons_block{
+          display: flex;
+          justify-content:space-evenly;
+      }
+      #block {
+        margin-left: 120px;
+        margin-right: 620px;
+        border-style: solid;
+        background-color: mistyrose;
+      }
       #comments {
         background-color: lightcoral;
         border-bottom: lightslategray;
@@ -23,18 +42,23 @@
     </style>
   </head>
   <body onload="post();load_comment()">
-    <div id="art"></div>
-    <br />
-    <br />
-    <div id="post"></div>
+    <div id="block">
+      <div id="art"></div>
+      <br />
+      <br />
+      <div id="post"></div>
 
-    <br />
-    <div id="comments"></div>
+      <br />
+      <div id="comments"></div>
 
-    <br />
-    <button onclick="comment()">Comment!</button>
-    <button onclick="post_comment()">Post Comment</button>
-    <button onclick="go_back()">Go back</button>
+      <br />
+      <div id="buttons_block">
+        <button onclick="comment()">Comment!</button>
+        <button onclick="post_comment()">Post Comment</button>
+        <button onclick="go_back()">Go back</button>
+       
+      </div>
+    </div>
   </body>
 
   <script>
@@ -76,7 +100,7 @@
     }
     function post_comment() {
       if (clicked) {
-          clicked=false;
+        clicked = false;
         document.getElementById(
           "comments"
         ).innerHTML += `Post by: ${user} on date:${date} : ${

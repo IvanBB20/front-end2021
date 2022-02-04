@@ -9,12 +9,25 @@
     <style>
       .layout {
         background-color: blanchedalmond;
+        width: 400px;
+        border-radius: 20px;
+        text-indent: 10px;
       }
-
+      .buttons{
+          width: 200px;
+      }
       button {
         background-color: lightblue;
         border: none;
         margin-top: 11px;
+        border-radius: 10px;
+      }
+      #src{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          background-color: moccasin;
       }
     </style>
   </head>
@@ -53,8 +66,8 @@
 
       <div id="post"></div>
 
-      <button onclick="make_blog()">Enter a blog!</button>
-      <button onclick="post_blog()">Post it !</button>
+      <button class="buttons" onclick="make_blog()">Enter a blog!</button>
+      <button class="buttons" onclick="post_blog()">Post it !</button>
     </div>
 
     <br />
@@ -62,7 +75,7 @@
 
   <script>
     function load_posts() {
-      //  localStorage.clear();
+     //   localStorage.clear();
       clicked = false;
       if (localStorage.getItem("const")) {
         document.getElementById("post").innerHTML +=
