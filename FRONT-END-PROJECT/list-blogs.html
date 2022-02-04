@@ -60,10 +60,9 @@
     <br />
   </body>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script>
     function load_posts() {
-       //  localStorage.clear();
+      //   localStorage.clear();
        if(localStorage.getItem("const")){
          document.getElementById("post").innerHTML+=localStorage.getItem("const");
        }
@@ -93,6 +92,8 @@
        document.getElementById("post").innerHTML
       );
     }
+
+  
 
     function transfer(ele) {
       //   console.log(ele.innerText);

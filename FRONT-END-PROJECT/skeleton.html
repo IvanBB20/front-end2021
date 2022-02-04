@@ -12,9 +12,17 @@
       #post {
         background-color: lightcoral;
       }
+
+      #comments{
+          background-color: lightcoral;
+          border-bottom: lightslategray;
+          border-top: lightslategray;
+          border-style:solid;
+          border-width: 8px;
+      }
     </style>
   </head>
-  <body onload="post()" onload="load_comment()">
+  <body onload="post();load_comment()">
     <div id="art"></div>
     <br />
     <br />
@@ -39,6 +47,7 @@
       window.location.href = "list-blogs.html";
     }
 
+
     function return_current_user() {
       for (var i = 0; i < localStorage.length; i++) {
         if (localStorage.key(i).endsWith(" end")) {
@@ -53,10 +62,12 @@
     function load_comment() {
         for(var i=0;i<localStorage.length;i++){
             if(localStorage.key(i).endsWith(" comment")){
-
+              
                 var m_post_name=localStorage.key(i).substring(0,localStorage.key(i).indexOf(" comment"));
+               // console.log(m_post_name);
+              //  console.log(post_name);
                 if(m_post_name==post_name){
-                    document.getElementById("comments").innerHTML+=localStorage.getItem(localStorage.key(i));
+                    document.getElementById("comments").innerHTML=localStorage.getItem(localStorage.key(i));
                     break;
                 }
 
@@ -69,10 +80,10 @@
         "comments"
       ).innerHTML += `Post by: ${user} on date:${date} : ${
         document.getElementById("comment-box").value
-      }`;
+    }`;
       document.getElementById("comment-box").remove();
-      console.log(post_name);
-      localStorage.setItem(post_name +" comment" , document.getElementById("comment").innerHTML);
+    //  console.log(post_name);
+      localStorage.setItem(post_name +" comment" , document.getElementById("comments").innerHTML);
     }
 
     function comment() {
@@ -101,8 +112,8 @@
           index = i;
           var article = localStorage.getItem(post_name);
           post_name = post_name.substring(0, post_name.indexOf(" cur-post"));
-          document.getElementById("art").innerText += `${post_name}`;
-          document.getElementById("post").innerText += `${article}`;
+          document.getElementById("art").innerHTML += `${post_name}`;
+          document.getElementById("post").innerHTML += `${article}`;
           return;
         }
       }
