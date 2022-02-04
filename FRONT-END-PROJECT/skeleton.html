@@ -13,12 +13,12 @@
         background-color: lightcoral;
       }
 
-      #comments{
-          background-color: lightcoral;
-          border-bottom: lightslategray;
-          border-top: lightslategray;
-          border-style:solid;
-          border-width: 8px;
+      #comments {
+        background-color: lightcoral;
+        border-bottom: lightslategray;
+        border-top: lightslategray;
+        border-style: solid;
+        border-width: 8px;
       }
     </style>
   </head>
@@ -47,7 +47,6 @@
       window.location.href = "list-blogs.html";
     }
 
-
     function return_current_user() {
       for (var i = 0; i < localStorage.length; i++) {
         if (localStorage.key(i).endsWith(" end")) {
@@ -60,35 +59,40 @@
     }
 
     function load_comment() {
-        for(var i=0;i<localStorage.length;i++){
-            if(localStorage.key(i).endsWith(" comment")){
-              
-                var m_post_name=localStorage.key(i).substring(0,localStorage.key(i).indexOf(" comment"));
-               // console.log(m_post_name);
-              //  console.log(post_name);
-                if(m_post_name==post_name){
-                    document.getElementById("comments").innerHTML=localStorage.getItem(localStorage.key(i));
-                    break;
-                }
-
-            }
+      clicked = false;
+      for (var i = 0; i < localStorage.length; i++) {
+        if (localStorage.key(i).endsWith(" comment")) {
+          var m_post_name = localStorage
+            .key(i)
+            .substring(0, localStorage.key(i).indexOf(" comment"));
+          if (m_post_name == post_name) {
+            document.getElementById("comments").innerHTML =
+              localStorage.getItem(localStorage.key(i));
+            break;
+          }
         }
-     return;
+      }
+      return;
     }
     function post_comment() {
-      document.getElementById(
-        "comments"
-      ).innerHTML += `Post by: ${user} on date:${date} : ${
-        document.getElementById("comment-box").value
-    }`;
-      document.getElementById("comment-box").remove();
-    //  console.log(post_name);
-      localStorage.setItem(post_name +" comment" , document.getElementById("comments").innerHTML);
+      if (clicked) {
+          clicked=false;
+        document.getElementById(
+          "comments"
+        ).innerHTML += `Post by: ${user} on date:${date} : ${
+          document.getElementById("comment-box").value
+        }`;
+        document.getElementById("comment-box").remove();
+        //  console.log(post_name);
+        localStorage.setItem(
+          post_name + " comment",
+          document.getElementById("comments").innerHTML
+        );
+      }
     }
-
     function comment() {
       user = return_current_user();
-
+      clicked = true;
       today = new Date();
       date =
         today.getDate() +
@@ -106,7 +110,7 @@
 
     function post() {
       for (var i = 0; i < localStorage.length; i++) {
-         post_name = localStorage.key(i);
+        post_name = localStorage.key(i);
         index = 0;
         if (post_name.endsWith(" cur-post")) {
           index = i;

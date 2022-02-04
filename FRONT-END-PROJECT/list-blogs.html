@@ -62,49 +62,53 @@
 
   <script>
     function load_posts() {
-      //   localStorage.clear();
-       if(localStorage.getItem("const")){
-         document.getElementById("post").innerHTML+=localStorage.getItem("const");
-       }
+      //  localStorage.clear();
+      clicked = false;
+      if (localStorage.getItem("const")) {
+        document.getElementById("post").innerHTML +=
+          localStorage.getItem("const");
+      }
     }
     function post_blog() {
-      title = document.getElementById("tlt").value;
-      article = document.getElementById("art").value;
+      if (clicked) {
+        clicked = false;
+        title = document.getElementById("tlt").value;
+        article = document.getElementById("art").value;
 
-      document.getElementById("tlt").remove();
-      document.getElementById("rmtag").remove();
-      document.getElementById("art").remove();
+        document.getElementById("tlt").remove();
+        document.getElementById("rmtag").remove();
+        document.getElementById("art").remove();
 
-      today = new Date();
-      date =
-        today.getDate() +
-        "/" +
-        (today.getMonth() + 1) +
-        "/" +
-        today.getFullYear();
+        today = new Date();
+        date =
+          today.getDate() +
+          "/" +
+          (today.getMonth() + 1) +
+          "/" +
+          today.getFullYear();
 
-      document.getElementById("post").innerHTML += `
+        document.getElementById("post").innerHTML += `
    <div class = "layout"> <button id="b" onclick="transfer(this)" value="${article}"> ${title} </button>   ${date} </div> <br>
    `;
 
-      localStorage.setItem(
-        "const",
-       document.getElementById("post").innerHTML
-      );
+        localStorage.setItem(
+          "const",
+          document.getElementById("post").innerHTML
+        );
+      }
     }
-
-  
 
     function transfer(ele) {
       //   console.log(ele.innerText);
-      var l_title=ele.innerText;
-      var l_art=ele.value;
+      var l_title = ele.innerText;
+      var l_art = ele.value;
 
-      localStorage.setItem(l_title+" cur-post" , l_art);
+      localStorage.setItem(l_title + " cur-post", l_art);
       window.location.href = "skeleton.html";
     }
 
     function make_blog() {
+      clicked = true;
       document.getElementById(
         "post"
       ).innerHTML += `<input id="tlt" type="text" placeholder="Enter title of blog"> <br id="rmtag"> `;
