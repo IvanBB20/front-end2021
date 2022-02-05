@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      #register-login {
+        background-color: wheat;
+        height: 300px;
+        width: 550px;
+        margin-left: 165px;
+        margin-top: 45px;
+      }
+
+      body{
+        background-color: azure;
+      }
+      button{
+        margin-top: 5px;
+        margin-left: 245px;
+        border-radius: 20px;
+        background-color: turquoise;
+
+      }
+
+      #welcome{
+        display: flex;
+        justify-content: center;
+      }
+      input {
+        border: none;
+        outline: 0;
+        border-radius: 12px;
+        border-bottom: 1px solid grey;
+        height: 20px;
+        margin-left: 188px;
+        width: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="register-login">
+     <!-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; REGISTER PAGE
+     -->
+     
+     <div id="welcome">
+      REGISTER PAGE
+     </div>
+      <br />
+      <br />
+      <br />
+
+      <input type="email" name="email" placeholder="email" id="em" />
+
+      <br />
+      <br />
+
+      <input type="password" name="password" placeholder="password"  id="ps"/>
+
+      <br />
+      <br />
+
+      <input
+        type="password"
+        name="password_cnf"
+        placeholder="confirm password"
+        id="ps_con"
+      />
+
+      <br>
+      <button onclick="verify()">Register!</button>
+    </div>
+
+    <script>
+      
+      function is_email_valid(email){
+          var len = email.length;
+          if(len < 5){
+           //   alert("Wrong email");
+            //  location.reload();
+              return false;
+          }
+
+          if ( ! email.match("[a-z]*[0-9]*@gmail.com") ){
+          //  location.reload();
+          //  alert("Wrong email structure");
+            //location.reload();
+            return false;
+          }
+
+          return true;
+      }
+
+      function is_password_valid(password , confirmed_password){
+         
+        var len=password.length;
+           if (len < 5){
+            //  alert("weak password");
+
+              return false;
+          }
+          if (password!=confirmed_password){
+             // alert("passwords do not match");
+              return false;
+          }
+
+          var cnt_of_digits=0;
+          var cnt_of_cap_letters=0;
+          var cnt_of_small_letters=0;
+          for(var i =0;i<len;i++){
+
+              if(password[i]>='0' && password[i]<='9'){
+                cnt_of_digits++;
+              }
+
+              if(password[i]>='A' && password[i] < 'Z'){
+                cnt_of_cap_letters++;
+              }
+              if( password[i]>='a' && password[i] < 'z'){
+                cnt_of_small_letters++;
+              }
+          }
+
+          if(cnt_of_digits<2){
+           // alert("Must have at least  2 digits");
+            return false;
+          }
+
+          if(cnt_of_small_letters<2){
+            //alert("Must have atleast 2 small letters");
+            return false;
+          }
+
+          if(cnt_of_cap_letters<2){
+           // alert("Must have atleast 2 big letters");
+            return false;
+          }
+
+
+          return true;
+
+      }
+
+      
+      function verify() {
+        var email = document.getElementById('em').value;
+        var password = document.getElementById('ps').value;
+        var confirm_password = document.getElementById('ps_con').value;
+
+    //   window.localStorage.clear();
+       if ( ! is_email_valid(email)){
+         alert("wrong email");
+         location.reload();
+         return;
+       }
+       if(! is_password_valid(password,confirm_password)){
+         alert("password must contain atleast 2 small letters , 2 big letters and 2 digits");
+         location.reload();
+          return;
+        }
+
+
+        if (localStorage.getItem(email)){
+          alert("user already registered!");
+          return;
+        }
+        localStorage.setItem(email , password);
+        localStorage.setItem(email+" end", email);
+        window.location.href = "form-login.html";
+
+      }
+    </script>
+  </body>
+</html>
+

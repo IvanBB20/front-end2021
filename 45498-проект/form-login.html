@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      button {
+        margin-top: 5px;
+        margin-left: 245px;
+        border-radius: 20px;
+        background-color: turquoise;
+      }
+
+      #block {
+        background-color: wheat;
+        height: 300px;
+        width: 550px;
+        margin-left: 165px;
+        margin-top: 45px;
+      }
+
+      input {
+        border: none;
+        outline: 0;
+        border-radius: 12px;
+        border-bottom: 1px solid grey;
+        height: 20px;
+        margin-left: 188px;
+        width: 200px;
+      }
+
+      #welcome {
+        margin-left: 170px;
+        margin-top: 40px;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="block">
+      <br />
+      <div id="welcome">WELCOME TO LOGIN PAGE</div>
+      <br />
+
+      <br />
+      <input type="email" name="email" placeholder="email" id="em" />
+
+      <br />
+      <br />
+
+      <input type="password" name="password" placeholder="password" id="ps" />
+
+      <br />
+      <button onclick="verify()">LOGIN</button>
+    </div>
+
+    <script>
+      function verify() {
+        //   localStorage.clear();
+        email = document.getElementById("em").value;
+        password = document.getElementById("ps").value;
+
+        if (localStorage.getItem(email) != password) {
+          window.location.href = "form-register.html";
+          return;
+        }
+
+        localStorage.setItem(email, password);
+
+        //establishing current user
+        for (var i = 0; i < localStorage.length; i++) {
+          if (localStorage.key(i).endsWith(" end")) {
+            localStorage.removeItem(localStorage.key(i));
+          }
+        }
+        localStorage.setItem(email + " end", email);
+
+        window.location.href = "list-blogs.html";
+      }
+    </script>
+  </body>
+</html>

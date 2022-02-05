@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #art {
+        background-color: lightcoral;
+        display: flex;
+        justify-content: center;
+      }
+      #post {
+        background-color: lightcoral;
+        display: flex;
+        justify-content: center;
+      }
+
+      div {
+        overflow-wrap: break-word;
+      }
+      #buttons_block {
+        display: flex;
+        justify-content: space-evenly;
+      }
+      #block {
+        margin-left: 120px;
+        margin-right: 620px;
+        border-style: solid;
+        background-color: mistyrose;
+      }
+      #comments {
+        background-color: lightcoral;
+        border-bottom: lightslategray;
+        border-top: lightslategray;
+        border-style: solid;
+        border-width: 8px;
+      }
+    </style>
+  </head>
+  <body onload="post();load_comment()">
+    <div id="block">
+      <div id="art"></div>
+      <br />
+      <br />
+      <div id="post"></div>
+
+      <br />
+      <div id="comments"></div>
+
+      <br />
+      <div id="buttons_block">
+        <button onclick="comment()">Comment!</button>
+        <button onclick="post_comment()">Post Comment</button>
+        <button onclick="go_back()">Go back</button>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    function go_back() {
+      for (var i = 0; i < localStorage.length; i++) {
+        if (localStorage.key(i).endsWith(" cur-post")) {
+          localStorage.removeItem(localStorage.key(i));
+        }
+      }
+      window.location.href = "list-blogs.html";
+    }
+
+    function return_current_user() {
+      for (var i = 0; i < localStorage.length; i++) {
+        if (localStorage.key(i).endsWith(" end")) {
+          return localStorage
+            .key(i)
+            .substring(0, localStorage.key(i).indexOf("end"));
+        }
+      }
+      return;
+    }
+
+    function load_comment() {
+      clicked_comment_button = false;
+      for (var i = 0; i < localStorage.length; i++) {
+        if (localStorage.key(i).endsWith(" comment")) {
+          var m_post_name = localStorage
+            .key(i)
+            .substring(0, localStorage.key(i).indexOf(" comment"));
+          if (m_post_name == post_name) {
+            document.getElementById("comments").innerHTML =
+              localStorage.getItem(localStorage.key(i));
+            break;
+          }
+        }
+      }
+      return;
+    }
+    function post_comment() {
+      if (clicked_comment_button) {
+        clicked_comment_button = false;
+        document.getElementById(
+          "comments"
+        ).innerHTML += `Post by: ${user} on date:${date} : ${
+          document.getElementById("comment-box").value
+        }`;
+        document.getElementById("comment-box").remove();
+        //  console.log(post_name);
+        localStorage.setItem(
+          post_name + " comment",
+          document.getElementById("comments").innerHTML
+        );
+      }
+    }
+    function comment() {
+      if (!clicked_comment_button) {
+        user = return_current_user();
+        clicked_comment_button = true;
+        today = new Date();
+        date =
+          today.getDate() +
+          "/" +
+          (today.getMonth() + 1) +
+          "/" +
+          today.getFullYear();
+
+        document.getElementById(
+          "comments"
+        ).innerHTML += `<br><textarea id="comment-box" rows=5 cols=33> </textarea> <br>`;
+      }
+    }
+
+    function post() {
+      for (var i = 0; i < localStorage.length; i++) {
+        post_name = localStorage.key(i);
+        index = 0;
+        if (post_name.endsWith(" cur-post")) {
+          index = i;
+          var article = localStorage.getItem(post_name);
+          post_name = post_name.substring(0, post_name.indexOf(" cur-post"));
+          document.getElementById("art").innerHTML += `${post_name}`;
+          document.getElementById("post").innerHTML += `${article}`;
+          return;
+        }
+      }
+    }
+  </script>
+</html>
